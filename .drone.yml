@@ -1,0 +1,8 @@
+pipeline:
+  build:
+    image: g3rv4/alpine-with-mountpoint
+    commands:
+      - "rm -rf /var/mount/*"
+      - "cp -r * /var/mount/"
+    volumes:
+      - /home/daniela/docker/shiny-apps/volumes/shiny-server:/var/mount
