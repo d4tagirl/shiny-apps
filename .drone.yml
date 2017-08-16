@@ -4,6 +4,7 @@ pipeline:
     commands:
       - "rm -rf /var/mount/*"
       - "cp -r * /var/mount/"
+      - "cat /var/docker-compose/docker-compose.yml"
       - "docker-compose -f /var/docker-compose/docker-compose.yml stop"
       - "docker-compose -f /var/docker-compose/docker-compose.yml rm -f"
       - "docker-compose -f /var/docker-compose/docker-compose.yml up -d"
@@ -17,6 +18,7 @@ pipeline:
     commands:
       - "rm -rf /var/mount/*"
       - "cp -r * /var/mount/"
+      - "cat /var/docker-compose/docker-compose.yml"
       - "docker-compose -f /var/docker-compose/docker-compose.yml stop"
       - "docker-compose -f /var/docker-compose/docker-compose.yml rm -f"
       - "docker-compose -f /var/docker-compose/docker-compose.yml up -d"
