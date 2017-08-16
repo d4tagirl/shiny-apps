@@ -4,28 +4,26 @@ pipeline:
     commands:
       - "rm -rf /var/mount/*"
       - "cp -r * /var/mount/"
-      - "cat /var/docker-compose/docker-compose.yml"
-      - "docker-compose -f /var/docker-compose/docker-compose.yml stop"
-      - "docker-compose -f /var/docker-compose/docker-compose.yml rm -f"
-      - "docker-compose -f /var/docker-compose/docker-compose.yml up -d"
+      - "docker-compose -f /var/shiny-apps-test/docker-compose.yml stop"
+      - "docker-compose -f /var/shiny-apps-test/docker-compose.yml rm -f"
+      - "docker-compose -f /var/shiny-apps-test/docker-compose.yml up -d"
     volumes:
       - /home/daniela/docker/shiny-apps-test/volumes/shiny-server:/var/mount
       - /var/run/docker.sock:/var/run/docker.sock
-      - /home/daniela/docker/shiny-apps-test:/var/docker-compose
+      - /home/daniela/docker/shiny-apps-test:/var/shiny-apps-test
 
   publish_to_prod:
     image: g3rv4/docker
     commands:
       - "rm -rf /var/mount/*"
       - "cp -r * /var/mount/"
-      - "cat /var/docker-compose/docker-compose.yml"
-      - "docker-compose -f /var/docker-compose/docker-compose.yml stop"
-      - "docker-compose -f /var/docker-compose/docker-compose.yml rm -f"
-      - "docker-compose -f /var/docker-compose/docker-compose.yml up -d"
+      - "docker-compose -f /var/shiny-apps/docker-compose.yml stop"
+      - "docker-compose -f /var/shiny-apps/docker-compose.yml rm -f"
+      - "docker-compose -f /var/shiny-apps/docker-compose.yml up -d"
     when:
       event: deployment
       environment: prod
     volumes:
       - /home/daniela/docker/shiny-apps/volumes/shiny-server:/var/mount
       - /var/run/docker.sock:/var/run/docker.sock
-      - /home/daniela/docker/shiny-apps:/var/docker-compose
+      - /home/daniela/docker/shiny-apps:/var/shiny-apps
